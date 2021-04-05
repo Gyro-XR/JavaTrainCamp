@@ -12,11 +12,19 @@
 相比多线程，线程池节省了线程的创建、销毁等开销，性能进一步提升
 
 ## netty
-在本地运行报错，有待解决。。。
+相比上述其他Server，性能提升相当明显；  
+netty数据零拷贝，IO消耗大幅减少；请求分发链路异步非阻塞，可以容纳更多请求；
+```
+C:\Users\86188>sb -u http://localhost:8808/test -c 10 -n 10000
+Starting at 2021/4/5 20:34:42
+[Press C to stop the test]
+9999    (RPS: 3664)
+---------------Finished!----------------
+Finished at 2021/4/5 20:34:45 (took 00:00:02.8823871)
+Status 200:    10000
 
-`四月 04, 2021 9:05:57 下午 io.netty.handler.logging.LoggingHandler channelRead
- 信息: [id: 0x80c74a5f, L:/0:0:0:0:0:0:0:0:8808] READ: [id: 0x9144685b, L:/127.0.0.1:8808 - R:/127.0.0.1:7142]
- 四月 04, 2021 9:05:57 下午 io.netty.bootstrap.AbstractBootstrap setChannelOption
- 警告: Unknown channel option 'io.netty.channel.unix.UnixChannelOption#SO_REUSEPORT' for channel '[id: 0x9144685b, L:/127.0.0.1:8808 - R:/127.0.0.1:7142]'
- 四月 04, 2021 9:05:57 下午 io.netty.handler.logging.LoggingHandler channelReadComplete
- 信息: [id: 0x80c74a5f, L:/0:0:0:0:0:0:0:0:8808] READ COMPLETE`
+RPS: 2614.6 (requests/second)
+Max: 80ms
+Min: 0ms
+Avg: 0.1ms
+```

@@ -30,4 +30,6 @@
 ![image](http://note.youdao.com/yws/public/resource/bc61e30ddac287c8f5d013680ad568fc/xmlnote/A1D9AFEA3C3446D785BAFAB7079D1FC9/17540)
 
 # 结果对比分析
+1、随着并发数的增加，RPS提升；
 
+2、并发数不断增加，RPS呈现先增后减的趋势，且平均响应时间变大，表明当并发数超过系统处理瓶颈时，系统压力增大，性能变差；
