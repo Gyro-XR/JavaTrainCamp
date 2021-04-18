@@ -24,7 +24,9 @@ public class Homework03
         //res[0] = method3();
         //res[0] = method4();
         //res[0] = method5();
-        res[0] = method6();
+        //res[0] = method6();
+        //res[0] = method7();
+        method8(res);
 
         // 确保  拿到result 并输出
         System.out.println("异步计算结果为：" + res[0]);
@@ -206,5 +208,46 @@ public class Homework03
         return futureTask.get();
     }
 
+    /**
+     * 方法七：
+     * CompletableFuture方法
+     *
+     * @return
+     */
+    private static int method7()
+    {
+        printMethodName();
+        Integer res = CompletableFuture.supplyAsync(() ->
+        {
+            return sum();
+        }).thenApplyAsync(v ->
+        {
+            return v;
+        }).join();
+        return res;
+    }
+
+    /**
+     * 方法八：countdownLatch
+     *
+     * @param result
+     * @return
+     */
+    private static int method8(int[] result) throws InterruptedException
+    {
+        printMethodName();
+        CountDownLatch latch = new CountDownLatch(1);
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                result[0] = sum();
+                latch.countDown();
+            }
+        }).start();
+        latch.await();
+        return result[0];
+    }
 
 }
