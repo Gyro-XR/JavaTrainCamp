@@ -1,19 +1,21 @@
 package com.example.awire.student;
 
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
 /**
  * @description: 实体类
  * @author: xuxinrong
- * @version: [2021-04-18]
+ * @version: [2021-04-19]
  **/
 @Data
-public class Student2
+@Component
+public class Student3
 {
     private String name;
     private int age;
 
-    public Student2(String name, int age)
+    public void set(String name, int age)
     {
         this.name = name;
         this.age = age;

@@ -14,7 +14,7 @@ ___
 @Configuration 注解：声明当前类是个配置类，作用同applicationContext.xml一样
 @Bean 注解：作用在方法上，声明当前方法的返回值是个由Spring管理的Bean，默认作用域为单例
 ```
-使用时，通过 
+使用时，通过 new AnnotationConfigApplicationContext(xxxx.class)，得到应用上下文对象；
 ___
 ### 三、隐式配置
 分两步：1、组件扫描；2、自动装配；
